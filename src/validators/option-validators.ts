@@ -2,6 +2,7 @@
 // bg-zinc-900 border-zinc-900
 // bg-rose-950 border-rose-950
 // bg-green-950  border-green-950
+// bg-cyan-400 border-cyan-400
 // bg-white border-white
 
 import { PRODUCT_PRICES } from "@/config/product"
@@ -23,15 +24,20 @@ export const COLORS = [
     tw: "rose-950"
   },
   {
+    label: "Green",
+    value: "green",
+    tw: "green-950"
+  },
+  {
+    label: "Cyan",
+    value: "cyan",
+    tw: "cyan-400"
+  },
+  {
     label: "White",
     value: "white",
     tw: "white"
   },
-  {
-    label: "Green",
-    value: "green",
-    tw: "green-950"
-  }
 ] as const
 
 export const MODELS = {
@@ -68,7 +74,7 @@ export const MATERIALS = {
   name: "material",
   options: [
     {
-      label: "silicone",
+      label: "Silicone",
       value: "silicone",
       description: undefined,
       price: PRODUCT_PRICES.material.silicone
@@ -92,7 +98,7 @@ export const FINISHES = {
       price: PRODUCT_PRICES.finish.smooth
     },
     {
-      label: "Textured FInish",
+      label: "Textured Finish",
       value: "textured",
       description: "Soft grippy texture",
       price: PRODUCT_PRICES.finish.textured
