@@ -2,7 +2,7 @@
 
 import Phone from "@/components/Phone"
 import { Button } from "@/components/ui/button"
-import { BASE_PRICE, PRODUCT_PRICES } from "@/config/product"
+import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products"
 import { cn, formatPrice } from "@/lib/utils"
 import { COLORS, MODELS } from "@/validators/option-validators"
 import { Configuration } from "@prisma/client"
@@ -33,15 +33,13 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     totalPrice += PRODUCT_PRICES.finish.textured
   }
 
-  const { mutate: createPaymentSession} = useMutation({
+  const { mutate: createPaymentSession } = useMutation({
     mutationKey: ["get-checkout-session"],
     mutationFn: createCheckoutSession,
-    onSuccess: ({url}) => {
-      if (url) {
-        router.push(url)
-      } else {
-        throw new Error("Unable to retrieve payment URL");
-      }
+    onSuccess: ({ url }) => {
+      if (url) router.push(url)
+      else throw new Error("Unable to retrieve payment URL");
+
     },
     onError: () => {
       toast({
@@ -117,7 +115,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                   </div>
                 )}
 
-                <div className="my-2 h-px bg-gray-200"/>
+                <div className="my-2 h-px bg-gray-200" />
 
                 <div className="flex items-center justify-between py-2">
                   <p className="font-semibold text-gray-900">Order total</p>
@@ -128,10 +126,10 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             <div className="mt-8 flex justify-end pb-12">
               <Button
                 className="px-4 sm:px-6 lg:px-8"
-                onClick={() => createCheckoutSession({configId: configuration.id})}>
+                onClick={() => createPaymentSession({ configId: configuration.id })}>
                 Checkout
                 <ArrowRight
-                  className="h-4 w-4 ml-1.5 inline"/>
+                  className="h-4 w-4 ml-1.5 inline" />
               </Button>
             </div>
           </div>

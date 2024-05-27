@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { ArrowRightIcon, Check, ChevronsUpDown } from 'lucide-react';
-import { BASE_PRICE } from '@/config/product';
+import { BASE_PRICE } from '@/config/products';
 import { useUploadThing } from '@/lib/uploadthing';
 import { useToast } from '@/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';

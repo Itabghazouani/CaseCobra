@@ -5,7 +5,7 @@
 // bg-cyan-400 border-cyan-400
 // bg-white border-white
 
-import { PRODUCT_PRICES } from "@/config/product"
+import { PRODUCT_PRICES } from "@/config/products"
 
 export const COLORS = [
   {
