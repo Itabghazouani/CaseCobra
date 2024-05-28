@@ -52,7 +52,7 @@ export const POST = async (req: Request) => {
               postalCode: shippingAddress!.postal_code!,
               street: shippingAddress!.line1!,
               state: shippingAddress!.state,
-            }
+            },
           },
           billingAddress: {
             create: {
@@ -62,16 +62,16 @@ export const POST = async (req: Request) => {
               postalCode: billingAddress!.postal_code!,
               street: billingAddress!.line1!,
               state: billingAddress!.state,
-            }
+            },
           },
         },
       });
     }
 
-    return NextResponse.json({ result: event, ok: true })
+    return NextResponse.json({ result: event, ok: true });
   } catch (err) {
-    console.error(err)
+    console.error(err);
     // send this to sentry
-    return NextResponse.json({ message: "Something went wrong.", ok: false })
+    return NextResponse.json({ message: "Something went wrong.", ok: false });
   }
 };
