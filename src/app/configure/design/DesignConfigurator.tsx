@@ -17,7 +17,7 @@ import { BASE_PRICE } from '@/config/products';
 import { useUploadThing } from '@/lib/uploadthing';
 import { useToast } from '@/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
-import { SaveConfigArgs, saveConfig as _saveConfig } from './action';
+import { SaveConfigArgs, saveConfig as _saveConfig } from './actions';
 import { useRouter } from 'next/navigation';
 
 interface IDesignConfiguratorProps {
@@ -33,7 +33,7 @@ const DesignConfigurator = ({
 }: IDesignConfiguratorProps) => {
   const { toast } = useToast()
   const router = useRouter()
-  const {mutate: saveConfig} = useMutation({
+  const { mutate: saveConfig, isPending } = useMutation({
     mutationKey: ["save-config"],
     mutationFn: async (args: SaveConfigArgs) => {
       await Promise.all([saveConfiguration(), _saveConfig(args)])
@@ -339,13 +339,17 @@ const DesignConfigurator = ({
               <p className='font-medium whitespace-nowrap'>
                 {formatPrice((BASE_PRICE + options.finish.price + options.material.price) / 100)}
               </p>
-              <Button onClick={() => saveConfig({
-                configId,
-                color: options.color.value,
-                finish: options.finish.value,
-                model: options.model.value,
-                material: options.material.value
-              })} size="sm" className='w-full'>
+              <Button
+                isLoading={isPending}
+                disabled={isPending}
+                loadingText="Saving"
+                onClick={() => saveConfig({
+                  configId,
+                  color: options.color.value,
+                  finish: options.finish.value,
+                  model: options.model.value,
+                  material: options.material.value
+                })} size="sm" className='w-full'>
                 Continue
                 <ArrowRightIcon className='h-4 w-4 ml-1.5 inline' />
               </Button>
